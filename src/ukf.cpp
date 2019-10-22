@@ -123,13 +123,12 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     time_us_ = meas_package.timestamp_;
     is_initialized_ = true;
     
-    std::cout << "Init x: " << x_.transpose() << std::endl;  
+    // std::cout << "Init x: " << x_.transpose() << std::endl;  
   } // end initialization
   
   if(meas_package.sensor_type_ == meas_package.LASER && use_laser_)
   {
     double delta_t = (meas_package.timestamp_ - time_us_) / 1e6;
-    std::cout << delta_t << std::endl;
     time_us_ = meas_package.timestamp_; // update time
     Prediction(delta_t);
     UpdateLidar(meas_package);
@@ -144,24 +143,12 @@ void UKF::ProcessMeasurement(MeasurementPackage meas_package) {
     std::cout << "ERROR: initialize fail. no sensor data input." << std::endl;
       return;
   }
-  std::cout << "x(k|k): " << x_.transpose() << std::endl;
-  std::cout << "estimated x:" << x_[0] << std::endl;
-  std::cout << "estimated y:" << x_[1] << std::endl;
-  std::cout << "estimated vx:" << cos(x_[3])*x_[2] << std::endl;
-  std::cout << "estimated vy:" << sin(x_[3])*x_[2] << std::endl;
+  // std::cout << "x(k|k): " << x_.transpose() << std::endl;
+  // std::cout << "estimated x:" << x_[0] << std::endl;
+  // std::cout << "estimated y:" << x_[1] << std::endl;
+  // std::cout << "estimated vx:" << cos(x_[3])*x_[2] << std::endl;
+  // std::cout << "estimated vy:" << sin(x_[3])*x_[2] << std::endl;
 
-		// viewer->addText("gt:", 930, 300, 20, 1, 1, 1, "gt");
-		// viewer->addText(" X: "+std::to_string( traffic[0].position.x), 930, 275, 20, 1, 1, 1, "gt_x");
-		// viewer->addText(" Y: "+std::to_string(traffic[0].position.y), 930, 250, 20, 1, 1, 1, "gt_y");
-		// viewer->addText("Vx: "	+std::to_string(traffic[0].velocity*cos(traffic[0].angle)), 930, 225, 20, 1, 1, 1, "gt_vx");
-		// viewer->addText("Vy: "	+std::to_string(traffic[0].velocity*sin(traffic[0].angle)), 930, 200, 20, 1, 1, 1, "gt_vy");
-
-
-		// viewer->addText("est:", 1230, 300, 20, 1, 1, 1, "est");
-		// viewer->addText(" X: "+std::to_string(traffic[0].ukf.x_[0]), 1130, 275, 20, 1, 1, 1, "est_x");
-		// viewer->addText(" Y: "+std::to_string(traffic[0].ukf.x_[1]), 1130, 250, 20, 1, 1, 1, "est_y");
-		// viewer->addText("Vx: "	+std::to_string(cos(traffic[0].ukf.x_(3))*traffic[0].ukf.x_(2)), 1130, 225, 20, 1, 1, 1, "est_vx");
-		// viewer->addText("Vy: "	+std::to_string(sin(traffic[0].ukf.x_(3))*traffic[0].ukf.x_(2)), 1130, 200, 20, 1, 1, 1, "est_vy");
 }
 
 void UKF::Prediction(double delta_t) {
@@ -273,7 +260,7 @@ void UKF::UpdateLidar(MeasurementPackage meas_package) {
    * covariance, P_.
    * You can also calculate the lidar NIS, if desired.
    */
-  std::cout << "\nUpdateLidar" << std:: endl;
+  // std::cout << "\nUpdateLidar" << std:: endl;
   // std::cout << "Lidar meas data size: " << meas_package.raw_measurements_.size() << std::endl;
   // std::cout << "values: ";
   // for(int i=0; i<meas_package.raw_measurements_.size(); i++){
@@ -385,7 +372,7 @@ void UKF::UpdateRadar(MeasurementPackage meas_package) {
    * covariance, P_.
    * You can also calculate the radar NIS, if desired.
    */
-  std::cout << "\nUpdateRadar" << std:: endl;
+  // std::cout << "\nUpdateRadar" << std:: endl;
   // std::cout << "Radar meas data size: " << meas_package.raw_measurements_.size() << std::endl;
   // std::cout << "values: ";
   // for(int i=0; i<meas_package.raw_measurements_.size(); i++){
