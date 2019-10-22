@@ -3,6 +3,7 @@
 
 #include "Eigen/Dense"
 #include "measurement_package.h"
+#include <iostream>
 
 class UKF {
  public:
@@ -53,10 +54,10 @@ class UKF {
 
   // state vector: [pos1 pos2 vel_abs yaw_angle yaw_rate] in SI units and rad
   Eigen::VectorXd x_;
-
+  
   // state covariance matrix
   Eigen::MatrixXd P_;
-
+  
   // predicted sigma points matrix
   Eigen::MatrixXd Xsig_pred_;
 
